@@ -4,11 +4,11 @@ import sys,os,csv,paramiko,getpass,time, datetime
 configArray = []
 fileArray = []
 dirArray = []
-hostname = '80.111.55.168'
+ipNameArray = []
+serverNameArray = []
 user = raw_input("Whats your username? ")
 passw = getpass.getpass()
-port = 2346
-
+port = []
 i = 1
 x = 0
 st = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
@@ -29,7 +29,12 @@ with open('config-list.csv') as f:
 		t = len(dirArray)
 
 		
-
+with open('serverToConfig.csv') as x:
+	readerIP = csv.DictReader(x)
+	for row in reader:
+		ipArray.append(row['ip'])
+		serverNameArray.append(row['servername'])
+		port.append(row['ip']
 #Sort and compare the two arrays - Continue if all is fine, Stop and print differences.
 configArray.sort()
 fileArray.sort()
@@ -49,7 +54,7 @@ if configArray==fileArray:
 		try:
 			ssh = paramiko.SSHClient()
         		ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-       			ssh.connect(hostname,port=2346,username=user,password=passw)
+       			ssh.connect(hostname,port=port[],username=user,password=passw)
 			sftp = ssh.open_sftp()
 			while x <= t:
 				remoteDir = dirArray[x] 
