@@ -20,3 +20,6 @@ There are a few elements to this:
 
 TO-DO: 
 Add command after files have been pushed to restart service that it is associated with. 
+
+Extra py-packages to install:
+paramiko - http://docs.paramiko.org/en/2.4/ - pip install paramiko
